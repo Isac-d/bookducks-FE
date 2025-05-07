@@ -1,0 +1,99 @@
+body {
+    color: white;
+}
+
+.login-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Playfair Display SC", serif;
+    gap: 50px;
+
+}
+
+.log-in-wrapper{
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-username-container {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+input {
+    width: 320px;
+    background: transparent;
+    color: white;
+    font-family: "Lora", serif;
+    font-weight: 600;
+    font-size: 18px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid #fff;
+}
+
+input:focus{
+    outline: none;
+}
+
+.button-register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Lora", serif;
+
+    text-align: center;
+    gap: 35px;
+}
+
+.login-text {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.login-button {
+    border: none;
+    background: #d4af37;
+    color: #fff;
+    font-size: 24px;
+    width: 200px;
+    border-radius: 3px;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+.register-text {
+    font-size: 18px;
+    a{
+        text-decoration: none;
+        color: white;
+        border-bottom: 1px solid #d4af37;
+    }
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 320px;
+  }
+  .eye-container {
+    border-bottom: 2px solid white;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+  }
+  .fa-eye {
+    cursor: pointer;
+  }
+
+  .fa-eye-slash{
+    cursor: pointer;
+  }

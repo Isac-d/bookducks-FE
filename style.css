@@ -58,6 +58,7 @@ button:hover {
   width: 100%;
   color: white;
   box-sizing: border-box;
+  z-index: 1000;
   transition: 200ms all;
 }
 
@@ -131,11 +132,15 @@ span {
     font-family: "Playfair Display SC", serif;
     font-weight: 600;
     width: fit-content;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 0 auto;
+    color: white;
     border-bottom: 2px solid #d4af37;
   }
 }
 .browse-books {
-  padding-top: 180px;
+  padding-top: 140px;
   min-height: 85vh;
   color: #fff;
   font-family: "Playfair Display SC", serif;

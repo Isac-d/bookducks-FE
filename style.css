@@ -1,0 +1,376 @@
+html {
+  scroll-behavior: smooth;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+body {
+  background: #1f1f1f;
+}
+button {
+  font-family: "Lora", serif;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  filter: grayscale(0.3);
+}
+
+.review-button-popular {
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  background: #d4af37;
+  color: white;
+}
+.add-to-readlist-popular {
+  background: #2D2D2D;
+  color: white;
+  height: 40px;
+  font-size: 18px;
+}
+.review-button {
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #d4af37;
+  color: white;
+}
+.add-to-readlist {
+  background: #2D2D2D;
+  color: white;
+  height: 30px;
+  font-size: 14px;
+}
+
+.navbar {
+  display: flex;
+  padding: 40px 75px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 36px;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 900;
+  position: fixed;
+  width: 100%;
+  color: white;
+  box-sizing: border-box;
+  transition: 200ms all;
+}
+
+.navbar:hover {
+  background-color: #2a2a2a;
+}
+
+.navlink {
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  transition: 200ms all ease-in;
+}
+.navlink:hover {
+  border-bottom: 2px solid #d4af37;
+}
+.navlink-container {
+  display: flex;
+  gap: 40px;
+}
+
+span {
+  color: #d4af37;
+}
+
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  gap: 70px;
+  color: #fff;
+
+  h1 {
+    font-size: 40px;
+    font-family: "Lora", serif;
+    font-weight: 800;
+    margin: 0 auto;
+    width: 600px;
+  }
+}
+
+.cta-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 35px;
+
+  button {
+    width: fit-content;
+    margin: 0 auto;
+    border: none;
+    background: #d4af37;
+    font-size: 30px;
+    border-radius: 3px;
+    font-family: "Lora", serif;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+    padding: 15px 45px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-family: "Playfair Display SC", serif;
+    font-weight: 600;
+  }
+
+  .book-link {
+    font-family: "Playfair Display SC", serif;
+    font-weight: 600;
+    width: fit-content;
+    border-bottom: 2px solid #d4af37;
+  }
+}
+.browse-books {
+  padding-top: 180px;
+  min-height: 85vh;
+  color: #fff;
+  font-family: "Playfair Display SC", serif;
+  margin: 0 auto;
+  gap: 100px;
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.popular-books-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  h1 {
+    font-size: 30px;
+  }
+}
+
+.popular-books {
+  display: flex;
+  gap: 80px;
+}
+.img-container-popular{
+  height: 360px;
+  width: 235px;
+  position: relative;
+}
+.img-container{
+  height: 257px;
+  width: 169px;
+  position: relative;
+}
+
+.img-overlay{
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #1f1f1f73;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transition: all 200ms;
+}
+.img-overlay:hover{
+  opacity: 100;
+  transform: translateY(-20px);
+}
+.button-container {
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.popular-book {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  gap: 5px;
+
+  img {
+    height: 360px;
+    width: 235px;
+  }
+}
+
+.stars-book {
+  display: flex;
+  gap: 10px;
+  width: 88.6px;
+  top: 15px;
+  position: relative;
+}
+.stars-popular {
+  top: 10px;
+  position: relative;
+  display: flex;
+  gap: 4px;
+  width: 101.25px;
+
+}
+
+.book-name-stars-container-popular {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  h3 {
+    max-width: 235px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.book-name-stars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  h3 {
+    max-width: 169px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.review {
+  display: flex;
+  width: 440px;
+  padding: 20px;
+  align-items: center;
+  gap: 15px;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+
+  img {
+    width: 65px;
+    height: 89px;
+    border-radius: 5px;
+  }
+}
+
+
+.review-body {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.review-text {
+  font-size: 12px;
+  font-family: "Lora", serif;
+  margin-bottom: 5px;
+}
+
+.review-user {
+  font-size: 13px;
+  font-family: "Lora", serif;
+  color: #afafaf;
+  margin-left: auto;
+}
+
+.title-author {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.author {
+  font-size: 14px;
+}
+
+.rhs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  h1 {
+    font-size: 30px;
+  }
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  gap: 5px;
+
+  img {
+    width: 169px;
+    height: 257px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+.discover-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.discover-books-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+
+.lhs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  width: 865px;
+}
+
+.reviews-container {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.star-container {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  width: 90px;
+
+}
+
+.star-empty, .star-filled {
+  position: absolute;
+  top: -15px;
+  left: 0;
+}
+
+.star-filled {
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ffb400; /* Filled star color */
+}
+
+.star-empty {
+  color: #e0e0e0; /* Empty star color */
+}
+.review-rating {
+  position: relative;
+}
+

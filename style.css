@@ -184,15 +184,22 @@ span {
   background-color: #1f1f1f73;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   opacity: 0;
+  justify-content: flex-end;
   transition: all 200ms;
 }
+
+
 .img-overlay:hover{
   opacity: 100;
-  transform: translateY(-20px);
+}
+.img-overlay:hover .button-container{
+  transform: translateY(0);
+
 }
 .button-container {
+  display: none;
+  transition: all 200ms;
   transform: translateY(20px);
   display: flex;
   flex-direction: column;
@@ -379,3 +386,6 @@ span {
   position: relative;
 }
 
+.log-Out {
+  display: none;
+}

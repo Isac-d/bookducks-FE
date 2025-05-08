@@ -1,7 +1,6 @@
 import { calculateRating } from "../frontend/utlils/calculateAvgRating.js";
-
+import { isUserSignedIn } from "./utlils/isUserSignedIn.js";
 const BASE_URL = "http://localhost:1337";
-
 const fetchBooks = async (url) => {
   try {
     const response = await fetch(`${url}/api/books?populate=*`);
@@ -337,7 +336,29 @@ const renderRecentReviews = async () => {
     starFilled.style.width = `${ratingPercentage}%`;
   });
 };
+const logOutButton = document.querySelector('.log-Out')
 
+const renderIfSignedIn = () => {
+  
+  const buttonContainers = document.querySelectorAll('.button-container')
+  const logOutButton = document.querySelector('.log-Out')
+  const logInbutton = document.querySelector('.log-in')
+  logOutButton.addEventListener('click', window.refresh)
+
+
+  const signedIn = isUserSignedIn();
+  console.log(buttonContainers)
+
+  logInbutton.style.display = signedIn ? 'none' : 'flex'
+  logOutButton.style.display = signedIn ? 'flex' : 'none'
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderIfSignedIn();
+});
+
+logOutButton.addEventListener('click', ()=>localStorage.removeItem('token'))
 renderRecentReviews();
 renderAllBooks();
 renderPopularBooks();

@@ -49,202 +49,207 @@ const renderPopularBooks = async () => {
   const allBooks = await fetchBooks(BASE_URL);
   let popularBooks = getTopThreeBooks(allBooks);
   const bookContainer = document.querySelector(".popular-books");
-  
 
   popularBooks.forEach((book) => {
     const popularBookDiv = document.createElement("div");
-popularBookDiv.className = "popular-book";
+    popularBookDiv.className = "popular-book";
 
-// Create image container with overlay
-const imgContainer = document.createElement("div");
-imgContainer.className = "img-container-popular";
+    // Create image container with overlay
+    const imgContainer = document.createElement("div");
+    imgContainer.className = "img-container-popular";
 
-// Create image overlay with buttons
-const imgOverlay = document.createElement("div");
-imgOverlay.className = "img-overlay";
+    // Create image overlay with buttons
+    const imgOverlay = document.createElement("div");
+    imgOverlay.className = "img-overlay";
+    imgOverlay.addEventListener("click", function() {
+      window.location.href = `pages/productPage/productPage.html?id=${book.documentId}`; 
+    });
 
-// Create button container
-const buttonContainer = document.createElement("div");
-buttonContainer.className = "button-container";
+    // Create button container
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
 
-// Create "ADD TO READLIST" button
-const addToReadlistBtn = document.createElement("button");
-addToReadlistBtn.className = "add-to-readlist-popular";
-addToReadlistBtn.textContent = "ADD TO READLIST ";
+    // Create "ADD TO READLIST" button
+    const addToReadlistBtn = document.createElement("button");
+    addToReadlistBtn.className = "add-to-readlist-popular";
+    addToReadlistBtn.textContent = "ADD TO READLIST ";
 
-// Create book icon for the add to readlist button
-const bookIcon = document.createElement("i");
-bookIcon.className = "fa-solid fa-book";
-bookIcon.style.color = "white";
-addToReadlistBtn.appendChild(bookIcon);
+    // Create book icon for the add to readlist button
+    const bookIcon = document.createElement("i");
+    bookIcon.className = "fa-solid fa-book";
+    bookIcon.style.color = "white";
+    addToReadlistBtn.appendChild(bookIcon);
 
-// Create "REVIEW BOOK" button
-const reviewButton = document.createElement("button");
-reviewButton.className = "review-button-popular";
-reviewButton.textContent = "REVIEW BOOK";
+    // Create "REVIEW BOOK" button
+    const reviewButton = document.createElement("button");
+    reviewButton.className = "review-button-popular";
+    reviewButton.textContent = "REVIEW BOOK";
 
-// Append buttons to button container
-buttonContainer.appendChild(addToReadlistBtn);
-buttonContainer.appendChild(reviewButton);
+    // Append buttons to button container
+    buttonContainer.appendChild(addToReadlistBtn);
+    buttonContainer.appendChild(reviewButton);
 
-// Append button container to overlay
-imgOverlay.appendChild(buttonContainer);
+    // Append button container to overlay
+    imgOverlay.appendChild(buttonContainer);
 
-// Create img element
-const img = document.createElement("img");
-img.src = `${BASE_URL}${book.bookCover.url}`;
-img.alt = "book cover";
+    // Create img element
+    const img = document.createElement("img");
+    img.src = `${BASE_URL}${book.bookCover.url}`;
+    img.alt = "book cover";
 
-// Append overlay and img to imgContainer
-imgContainer.appendChild(imgOverlay);
-imgContainer.appendChild(img);
+    // Append overlay and img to imgContainer
+    imgContainer.appendChild(imgOverlay);
+    imgContainer.appendChild(img);
 
-// Create book info container
-const bookInfoDiv = document.createElement("div");
-bookInfoDiv.className = "book-name-stars-container-popular";
+    // Create book info container
+    const bookInfoDiv = document.createElement("div");
+    bookInfoDiv.className = "book-name-stars-container-popular";
 
-// Create title
-const title = document.createElement("h3");
-title.textContent = book.bookName;
+    // Create title
+    const title = document.createElement("h3");
+    title.textContent = book.bookName;
 
-// Create stars container
-const starsDiv = document.createElement("div");
-starsDiv.className = "stars-popular";
+    // Create stars container
+    const starsDiv = document.createElement("div");
+    starsDiv.className = "stars-popular";
 
-const starEmpty = document.createElement("div");
-starEmpty.className = "star-empty";
+    const starEmpty = document.createElement("div");
+    starEmpty.className = "star-empty";
 
-// Filled stars container
-const starFilled = document.createElement("div");
-starFilled.className = "star-filled";
+    // Filled stars container
+    const starFilled = document.createElement("div");
+    starFilled.className = "star-filled";
 
-for (let i = 0; i < 5; i++) {
-    const emptyStar = document.createElement("i");
-    emptyStar.className = "fas fa-star";
-    starEmpty.appendChild(emptyStar);
-  
-    const filledStar = document.createElement("i");
-    filledStar.className = "fas fa-star";
-    starFilled.appendChild(filledStar);
-}
+    for (let i = 0; i < 5; i++) {
+      const emptyStar = document.createElement("i");
+      emptyStar.className = "fas fa-star";
+      starEmpty.appendChild(emptyStar);
 
-starsDiv.appendChild(starEmpty);
-starsDiv.appendChild(starFilled);
+      const filledStar = document.createElement("i");
+      filledStar.className = "fas fa-star";
+      starFilled.appendChild(filledStar);
+    }
 
-const avgRating = calculateRating(book.reviews);
-const ratingPercentage = (avgRating / 5) * 100;
-starFilled.style.width = `${ratingPercentage}%`;
+    starsDiv.appendChild(starEmpty);
+    starsDiv.appendChild(starFilled);
 
-// Append title and stars to book info div
-bookInfoDiv.appendChild(title);
-bookInfoDiv.appendChild(starsDiv);
+    const avgRating = calculateRating(book.reviews);
+    const ratingPercentage = (avgRating / 5) * 100;
+    starFilled.style.width = `${ratingPercentage}%`;
 
-// Append imgContainer and bookInfoDiv to popularBookDiv
-popularBookDiv.appendChild(imgContainer);
-popularBookDiv.appendChild(bookInfoDiv);
+    // Append title and stars to book info div
+    bookInfoDiv.appendChild(title);
+    bookInfoDiv.appendChild(starsDiv);
 
-// Append popularBookDiv to bookContainer
-bookContainer.appendChild(popularBookDiv);
+    // Append imgContainer and bookInfoDiv to popularBookDiv
+    popularBookDiv.appendChild(imgContainer);
+    popularBookDiv.appendChild(bookInfoDiv);
+
+    // Append popularBookDiv to bookContainer
+    bookContainer.appendChild(popularBookDiv);
   });
 };
 
 const renderAllBooks = async () => {
   const allBooks = await fetchBooks(BASE_URL);
   const bookContainer = document.querySelector(".discover-books-container");
-  
+
   allBooks.forEach((book) => {
     const bookDiv = document.createElement("div");
-bookDiv.className = "book";
+    bookDiv.className = "book";
 
-// Create image container with overlay
-const imgContainer = document.createElement("div");
-imgContainer.className = "img-container";
+    // Create image container with overlay
+    const imgContainer = document.createElement("div");
+    imgContainer.className = "img-container";
 
-// Create image overlay with buttons
-const imgOverlay = document.createElement("div");
-imgOverlay.className = "img-overlay";
+    // Create image overlay with buttons
+    const imgOverlay = document.createElement("div");
+    imgOverlay.className = "img-overlay";
+    imgOverlay.addEventListener("click", function() {
+      window.location.href = `pages/productPage/productPage.html?id=${book.documentId}`; 
+    });
 
-// Create button container
-const buttonContainer = document.createElement("div");
-buttonContainer.className = "button-container";
+    // Create button container
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
 
-// Create "ADD TO READLIST" button
-const addToReadlistBtn = document.createElement("button");
-addToReadlistBtn.className = "add-to-readlist";
-addToReadlistBtn.textContent = "ADD TO READLIST ";
+    // Create "ADD TO READLIST" button
+    const addToReadlistBtn = document.createElement("button");
+    addToReadlistBtn.className = "add-to-readlist";
+    addToReadlistBtn.textContent = "ADD TO READLIST ";
 
-// Create book icon for the add to readlist button
-const bookIcon = document.createElement("i");
-bookIcon.className = "fa-solid fa-book";
-bookIcon.style.color = "white";
-addToReadlistBtn.appendChild(bookIcon);
+    // Create book icon for the add to readlist button
+    const bookIcon = document.createElement("i");
+    bookIcon.className = "fa-solid fa-book";
+    bookIcon.style.color = "white";
+    addToReadlistBtn.appendChild(bookIcon);
 
-// Create "REVIEW BOOK" button
-const reviewButton = document.createElement("button");
-reviewButton.className = "review-button";
-reviewButton.textContent = "REVIEW BOOK";
+    // Create "REVIEW BOOK" button
+    const reviewButton = document.createElement("button");
+    reviewButton.className = "review-button";
+    reviewButton.textContent = "REVIEW BOOK";
 
-// Append buttons to button container
-buttonContainer.appendChild(addToReadlistBtn);
-buttonContainer.appendChild(reviewButton);
+    // Append buttons to button container
+    buttonContainer.appendChild(addToReadlistBtn);
+    buttonContainer.appendChild(reviewButton);
 
-// Append button container to overlay
-imgOverlay.appendChild(buttonContainer);
+    // Append button container to overlay
+    imgOverlay.appendChild(buttonContainer);
 
-// Create img element
-const img = document.createElement("img");
-img.src = `${BASE_URL}${book.bookCover.url}`;
-img.alt = "Book cover";
+    // Create img element
+    const img = document.createElement("img");
+    img.src = `${BASE_URL}${book.bookCover.url}`;
+    img.alt = "Book cover";
 
-// Append overlay and img to imgContainer
-imgContainer.appendChild(imgOverlay);
-imgContainer.appendChild(img);
+    // Append overlay and img to imgContainer
+    imgContainer.appendChild(imgOverlay);
+    imgContainer.appendChild(img);
 
-// Append imgContainer to bookDiv
-bookDiv.appendChild(imgContainer);
+    // Append imgContainer to bookDiv
+    bookDiv.appendChild(imgContainer);
 
-// Create info container
-const infoDiv = document.createElement("div");
-infoDiv.className = "book-name-stars-container";
+    // Create info container
+    const infoDiv = document.createElement("div");
+    infoDiv.className = "book-name-stars-container";
 
-// Create title
-const title = document.createElement("h3");
-title.textContent = book.bookName;
-infoDiv.appendChild(title);
+    // Create title
+    const title = document.createElement("h3");
+    title.textContent = book.bookName;
+    infoDiv.appendChild(title);
 
-// Calculate average rating
-const avgRating = calculateRating(book.reviews);
+    // Calculate average rating
+    const avgRating = calculateRating(book.reviews);
 
-// Create stars container
-const starsDiv = document.createElement("div");
-starsDiv.className = "stars-book";
+    // Create stars container
+    const starsDiv = document.createElement("div");
+    starsDiv.className = "stars-book";
 
-const starEmpty = document.createElement("div");
-starEmpty.className = "star-empty";
+    const starEmpty = document.createElement("div");
+    starEmpty.className = "star-empty";
 
-// Filled stars container
-const starFilled = document.createElement("div");
-starFilled.className = "star-filled";
+    // Filled stars container
+    const starFilled = document.createElement("div");
+    starFilled.className = "star-filled";
 
-for (let i = 0; i < 5; i++) {
-    const emptyStar = document.createElement("i");
-    emptyStar.className = "fas fa-star fa-sm";
-    starEmpty.appendChild(emptyStar);
-  
-    const filledStar = document.createElement("i");
-    filledStar.className = "fas fa-star fa-sm";
-    starFilled.appendChild(filledStar);
-}
+    for (let i = 0; i < 5; i++) {
+      const emptyStar = document.createElement("i");
+      emptyStar.className = "fas fa-star fa-sm";
+      starEmpty.appendChild(emptyStar);
 
-starsDiv.appendChild(starEmpty);
-starsDiv.appendChild(starFilled);
+      const filledStar = document.createElement("i");
+      filledStar.className = "fas fa-star fa-sm";
+      starFilled.appendChild(filledStar);
+    }
 
-const ratingPercentage = (avgRating / 5) * 100;
-starFilled.style.width = `${ratingPercentage}%`;
+    starsDiv.appendChild(starEmpty);
+    starsDiv.appendChild(starFilled);
 
-infoDiv.appendChild(starsDiv);
-bookDiv.appendChild(infoDiv);
-bookContainer.appendChild(bookDiv);
+    const ratingPercentage = (avgRating / 5) * 100;
+    starFilled.style.width = `${ratingPercentage}%`;
+
+    infoDiv.appendChild(starsDiv);
+    bookDiv.appendChild(infoDiv);
+    bookContainer.appendChild(bookDiv);
   });
 };
 
@@ -324,16 +329,12 @@ const renderRecentReviews = async () => {
     reviewRating.appendChild(starContainer);
     reviewBody.appendChild(reviewRating);
 
-
     // Set the star rating (assuming review.rating is on a scale of 1-10)
     // First convert the 1-10 scale to 0.5-5 stars
     const starRating = review.rating / 2;
     // Then calculate percentage of the total width
     const ratingPercentage = (starRating / 5) * 100;
     starFilled.style.width = `${ratingPercentage}%`;
-
-  
-
   });
 };
 

@@ -1,0 +1,148 @@
+body {
+  color: white;
+  font-family: "Playfair Display SC", serif;
+}
+.product-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 70px;
+}
+.single-book-img {
+  height: 380px;
+  width: 280px;
+}
+
+.single-book-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 170px;
+}
+
+.book-info {
+  display: flex;
+  width: 800px;
+  gap: 65px;
+}
+
+.book-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.book-title-author {
+  display: flex;
+  flex-direction: column;
+  h1 {
+    font-size: 34px;
+    font-weight: 900;
+  }
+  h2 {
+    color: #a1a1a1;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.2;
+  }
+}
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    font-weight: 900;
+    font-size: 18px;
+  }
+  p {
+    color: #a1a1a1;
+
+    font-family: "Lora", serif;
+  }
+}
+
+.rating-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.product-button-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+    p{
+    font-family: "Lora", serif;
+    font-size: 12px;
+    }
+    button {
+        color: white;
+        background: #d4af37;
+        font-weight: 700;
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.description-text {
+    font-family: 'Lora', serif;
+    color: #DBDBDB;
+    font-weight: 500;
+
+
+}
+
+.product-star-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    display: inline-block;
+    width: 135px;
+    top: 15px;
+}
+
+.rating-number-container {
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+    font-family: "Mada", sans-serif;
+    gap: 10px;
+    .rating-number {
+        font-size: 32px;
+    }
+    p{
+        font-size: 16px;
+    }
+}
+
+.reviews-wrapper {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.review {
+    width: 100%;
+}
+
+.review-text {
+    font-size: 16px;
+}
+
+.title {
+    font-size: 20px;
+}

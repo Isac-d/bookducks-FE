@@ -58,7 +58,7 @@ button:hover {
   width: 100%;
   color: white;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 1002;
   transition: 200ms all;
 }
 
@@ -186,6 +186,7 @@ span {
   flex-direction: column;
   opacity: 0;
   justify-content: flex-end;
+  z-index: 1000;
   transition: all 200ms;
 }
 
@@ -202,6 +203,7 @@ span {
   transition: all 200ms;
   transform: translateY(20px);
   display: flex;
+  z-index: 1001;
   flex-direction: column;
 }
 

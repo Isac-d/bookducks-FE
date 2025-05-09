@@ -67,6 +67,7 @@ const renderPopularBooks = async () => {
     // Create button container
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
+    buttonContainer.style.display = isUserSignedIn() ? 'flex' : 'none'
 
     // Create "ADD TO READLIST" button
     const addToReadlistBtn = document.createElement("button");
@@ -171,6 +172,8 @@ const renderAllBooks = async () => {
     // Create button container
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
+    buttonContainer.style.display = isUserSignedIn() ? 'flex' : 'none'
+
 
     // Create "ADD TO READLIST" button
     const addToReadlistBtn = document.createElement("button");
@@ -338,25 +341,9 @@ const renderRecentReviews = async () => {
 };
 const logOutButton = document.querySelector('.log-Out')
 
-const renderIfSignedIn = () => {
-  
-  const buttonContainers = document.querySelectorAll('.button-container')
-  const logOutButton = document.querySelector('.log-Out')
-  const logInbutton = document.querySelector('.log-in')
-  logOutButton.addEventListener('click', window.refresh)
 
 
-  const signedIn = isUserSignedIn();
-  console.log(buttonContainers)
 
-  logInbutton.style.display = signedIn ? 'none' : 'flex'
-  logOutButton.style.display = signedIn ? 'flex' : 'none'
-
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderIfSignedIn();
-});
 
 logOutButton.addEventListener('click', ()=>localStorage.removeItem('token'))
 renderRecentReviews();

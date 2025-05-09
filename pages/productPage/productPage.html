@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="productPage.css" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
     <script src="productPage.js" defer type="module"></script>
+    <script src="../../utlils/renderIfSignedIn.js" defer type="module"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -31,7 +32,9 @@
       <div class="navlink-container">
         <a href="../../index.html" class="navlink">Home</a>
         <a href="../../index.html#books" class="navlink">Books</a>
-        <a href="../login/login.html" class="navlink">Log In</a>
+        <a href="../login/login.html" class="navlink log-in">Log In</a>
+        <a href="../../index.html" class="navlink log-Out">Log Out</a>
+
       </div>
     </nav>
     <div class="product-page-wrapper">
@@ -60,8 +63,16 @@
                 <div class="product-star-container"></div>
               </div>
               <div class="product-button-container">
-                <button class="review-btn">REVIEW BOOK</button>
-                <i class="fa-solid fa-book fa-xl"></i>
+                <div class="review-readlist">
+                    <button class="review-btn">REVIEW BOOK</button>
+                    <i class="fa-solid fa-book fa-xl"></i>
+                </div>
+                <div class="log-in-to-review">
+                    <a href="../login/login.html">
+                        <button class="log-in-buttton">LOG IN</button>
+                    </a>
+                    <h3>TO REVIEW</h3>
+                </div>
               </div>
             </div>
           </div>

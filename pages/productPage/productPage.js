@@ -63,7 +63,7 @@ const renderBook = async()=> {
     const ratingNumber = document.querySelector('.logo-yellow.rating')
     ratingNumber.innerHTML = avgRating
     const reviewButton = document.querySelector('.review-btn')
-    reviewButton.addEventListener('click', ()=> openPopup(bookInfo.bookName, bookSrc))
+    reviewButton.addEventListener('click', ()=> openPopup(bookInfo.bookName, bookSrc, bookInfo.documentId))
 
 }
 
@@ -148,6 +148,60 @@ if(closeButton){
   closeButton.addEventListener('click', closePopup)
   overlay.addEventListener('click', closePopup)
 }
+
+
+const starRating = document.getElementById('starRating');
+const starFilled = document.getElementById('starFilled');
+const ratingValue = document.getElementById('ratingValue');
+const starCount = 5;
+
+// Handle mouse movement over the stars
+if(starRating){
+
+starRating.addEventListener('mousemove', function(e) {
+  // Calculate relative position within the star rating container
+  const rect = starRating.getBoundingClientRect();
+  const position = e.clientX - rect.left;
+  
+  // Calculate percentage of width (0-100%)
+  const percentage = (position / rect.width) * 100;
+  
+  // Calculate rating on a 0-10 scale (for half-star increments)
+  let ratingScale = (percentage / 100) * (starCount * 2);
+  
+  // Round to nearest 1 (which represents half a star)
+  ratingScale = Math.round(ratingScale);
+  
+  // Convert back to a 0-5 scale with 0.5 increments
+  const rating = ratingScale / 2;
+  
+  // Calculate percentage for exact half or full stars
+  const exactPercentage = (ratingScale / (starCount * 2)) * 100;
+  
+  // Update filled stars width to snap to half or full stars
+  starFilled.style.width = exactPercentage + "%";
+  
+  // Update rating text
+  ratingValue.textContent = `Rating: ${rating} / 5`;
+});
+
+// Handle when mouse leaves the star rating
+starRating.addEventListener('mouseleave', function() {
+  // Reset to 0 stars
+  starFilled.style.width = "0%";
+  ratingValue.textContent = "Rating: 0 / 5";
+});
+
+starRating.addEventListener('click', function() {
+  const currentWidth = starFilled.style.width;
+  const currentPercentage = parseFloat(currentWidth);
+  const rating = (currentPercentage / 100) * 5;
+  alert(`You rated: ${rating} stars!`);
+
+});
+}
+
+
 
 renderReviews()
 renderBook()

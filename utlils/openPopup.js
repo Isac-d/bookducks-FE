@@ -1,4 +1,4 @@
-export const openPopup = (title, image) => {
+export const openPopup = (title, image, id) => {
     const bookTitle = document.querySelector('.review-book-title')
     const bookImage = document.querySelector('.review-book-img')
     const overlay = document.querySelector('.site-overlay')

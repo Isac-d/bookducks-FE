@@ -104,13 +104,18 @@
             <h1 class="review-book-title">BookTitle</h1>
             <div class="rating-star-container">
               <h3>RATE:</h3>
-              <div class="star-container">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
+              <div class="star-rating" id="starRating">
+                <div class="star-container-reviews">
+                  <div class="star-empty-review">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                  
+                  <div class="star-filled-review" id="starFilled">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                </div>
               </div>
+
             </div>
             <div class="write-review">
               <h3>Add review</h3>

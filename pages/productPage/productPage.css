@@ -39,6 +39,7 @@ body {
   h1 {
     font-size: 34px;
     font-weight: 900;
+    line-height: 1.2;
   }
   h2 {
     color: #a1a1a1;
@@ -236,4 +237,47 @@ textarea:focus {
     width: 150px;
     padding: 10px 10px;
   }
+}
+
+.star-container-reviews {
+  display: inline-flex;
+  position: relative;
+}
+
+/* Empty star style */
+.star-empty-review{
+  position: relative;
+  display: inline-block;
+  font-size: 25px;
+  color: #ddd;
+  white-space: nowrap;
+}
+
+.star-empty-review i {
+  margin: 0 5px;
+}
+
+/* Filled star overlay */
+.star-filled-review {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  overflow: hidden;
+  color: #FFD700;
+  font-size: 25px;
+  white-space: nowrap;
+  transition: width 0.1s ease-out;
+}
+
+.star-filled-review i {
+  margin: 0 5px;
+}
+
+.star-rating {
+  display: inline-flex;
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
 }

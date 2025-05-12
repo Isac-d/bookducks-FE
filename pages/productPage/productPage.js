@@ -1,5 +1,6 @@
 import { calculateRating } from "../../utlils/calculateAvgRating.js";
 import { fetchData } from "../../utlils/fetchData.js";
+import { openPopup, closePopup } from "../../utlils/openPopup.js";
 
 const BASE_URL = "http://localhost:1337";
 const urlParams = new URLSearchParams(window.location.search);
@@ -23,7 +24,8 @@ const renderBook = async()=> {
     bookDesc.innerHTML = `${bookInfo.description}`
 
     const bookImg = document.querySelector('.single-book-img')
-    bookImg.src = `${BASE_URL}${bookInfo.bookCover.url}`;
+    const bookSrc = `${BASE_URL}${bookInfo.bookCover.url}`
+    bookImg.src = bookSrc;
     bookImg.alt = "book cover";
 
 
@@ -60,6 +62,8 @@ const renderBook = async()=> {
 
     const ratingNumber = document.querySelector('.logo-yellow.rating')
     ratingNumber.innerHTML = avgRating
+    const reviewButton = document.querySelector('.review-btn')
+    reviewButton.addEventListener('click', ()=> openPopup(bookInfo.bookName, bookSrc))
 
 }
 
@@ -136,6 +140,14 @@ const renderReviews = async () => {
       starFilled.style.width = `${ratingPercentage}%`;
     });
   };
-  
+
+  const closeButton = document.querySelector('.fa-xmark')
+  const overlay = document.querySelector('.site-overlay')
+
+if(closeButton){
+  closeButton.addEventListener('click', closePopup)
+  overlay.addEventListener('click', closePopup)
+}
+
 renderReviews()
 renderBook()

@@ -14,6 +14,9 @@ button {
   font-family: "Lora", serif;
   border: none;
   cursor: pointer;
+  font-weight: 700;
+  color: white;
+  background: #d4af37;
 }
 button:hover {
   filter: grayscale(0.3);
@@ -286,7 +289,7 @@ span {
 .review-text {
   font-size: 12px;
   font-family: "Lora", serif;
-  margin-bottom: 5px;
+  margin-bottom: 25px;
 }
 
 .review-user {
@@ -390,4 +393,13 @@ span {
 
 .log-Out {
   display: none;
+}
+
+.site-overlay {
+  position: fixed;
+  filter: blur(10px);
+  height: 100%;
+  display: none;
+  width: 100%;
+  background-color: #000000bd;
 }

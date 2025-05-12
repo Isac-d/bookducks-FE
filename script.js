@@ -1,5 +1,6 @@
 import { calculateRating } from "../frontend/utlils/calculateAvgRating.js";
 import { isUserSignedIn } from "./utlils/isUserSignedIn.js";
+import { openPopup } from "./utlils/openPopup.js";
 const BASE_URL = "http://localhost:1337";
 const fetchBooks = async (url) => {
   try {
@@ -84,7 +85,6 @@ const renderPopularBooks = async () => {
     const reviewButton = document.createElement("button");
     reviewButton.className = "review-button-popular";
     reviewButton.textContent = "REVIEW BOOK";
-
     // Append buttons to button container
     buttonContainer.appendChild(addToReadlistBtn);
     buttonContainer.appendChild(reviewButton);

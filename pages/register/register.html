@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <script src="../register/register.js" defer type="module"></script>
+
     <link rel="stylesheet" href="../../style.css">
     <title>Document</title>
 </head>
@@ -27,6 +28,7 @@
         <div class="login-container">
             <h1 class="login-text">Register To Book<span class="logo-yellow">Ducks</span>.com</h1>
             <div class="password-username-container">
+                <input placeholder="Email..." type="email" class="email-input register">
                 <input placeholder="Username..." type="text" class="username-input register">
                 <div class="input-container">
                     <input type="password" placeholder="Password..." class="password-input register">
@@ -35,14 +37,14 @@
                     </div>
                 </div>
                 <div class="input-container">
-                    <input type="password" placeholder="Repeat password..." class="password-input register repeat">
+                    <input type="password" placeholder="Repeat password..." class="repeat-password-input register">
                     <div class="eye-container">
                         <i class="fa-solid fa-eye toggle-password"></i>
                     </div>
                 </div>
             </div>
             <div class="button-register-container">
-                <button class="login-button">REGISTER</button>
+                <button class="login-button register">REGISTER</button>
                 <div class="register-text">
                     <p>ALREADY HAVE AN ACCOUNT?</p>
                     <a href="../login/login.html">SIGN IN HERE</a>

@@ -277,7 +277,7 @@ textarea:focus {
 
 .star-rating {
   display: inline-flex;
-  padding: 20px;
+  padding: 0px;
   cursor: pointer;
   position: relative;
 }

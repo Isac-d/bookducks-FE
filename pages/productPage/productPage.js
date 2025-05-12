@@ -152,55 +152,81 @@ if(closeButton){
 
 const starRating = document.getElementById('starRating');
 const starFilled = document.getElementById('starFilled');
-const ratingValue = document.getElementById('ratingValue');
 const starCount = 5;
 
+// Variable to track if a rating has been selected
+let ratingSelected = false;
+let selectedRating = 0;
+
 // Handle mouse movement over the stars
-if(starRating){
+if(starRating) {
+  starRating.addEventListener('mousemove', function(e) {
+    // Only update on hover if no rating is selected or user is hovering again after selection
+    if (!ratingSelected) {
+      // Calculate relative position within the star rating container
+      const rect = starRating.getBoundingClientRect();
+      const position = e.clientX - rect.left;
+      
+      // Calculate percentage of width (0-100%)
+      const percentage = (position / rect.width) * 100;
+      
+      // Calculate rating on a 0-10 scale (for half-star increments)
+      let ratingScale = (percentage / 100) * (starCount * 2);
+      
+      // Round to nearest 1 (which represents half a star)
+      ratingScale = Math.round(ratingScale);
+      
+      // Convert back to a 0-5 scale with 0.5 increments
+      const rating = ratingScale / 2;
+      
+      // Calculate percentage for exact half or full stars
+      const exactPercentage = (ratingScale / (starCount * 2)) * 100;
+      
+      // Update filled stars width to snap to half or full stars
+      starFilled.style.width = exactPercentage + "%";
+      
+      // Update rating text
+    }
+  });
 
-starRating.addEventListener('mousemove', function(e) {
-  // Calculate relative position within the star rating container
-  const rect = starRating.getBoundingClientRect();
-  const position = e.clientX - rect.left;
-  
-  // Calculate percentage of width (0-100%)
-  const percentage = (position / rect.width) * 100;
-  
-  // Calculate rating on a 0-10 scale (for half-star increments)
-  let ratingScale = (percentage / 100) * (starCount * 2);
-  
-  // Round to nearest 1 (which represents half a star)
-  ratingScale = Math.round(ratingScale);
-  
-  // Convert back to a 0-5 scale with 0.5 increments
-  const rating = ratingScale / 2;
-  
-  // Calculate percentage for exact half or full stars
-  const exactPercentage = (ratingScale / (starCount * 2)) * 100;
-  
-  // Update filled stars width to snap to half or full stars
-  starFilled.style.width = exactPercentage + "%";
-  
-  // Update rating text
-  ratingValue.textContent = `Rating: ${rating} / 5`;
-});
+  // Handle when mouse leaves the star rating
+  starRating.addEventListener('mouseleave', function() {
+    if (!ratingSelected) {
+      // Reset to 0 stars if no rating is selected
+      starFilled.style.width = "0%";
+    } else {
+      starFilled.style.width = `${(selectedRating / 5) * 100}%`;
+      ratingValue.textContent = `Rating: ${selectedRating} / 5`;
+    }
+  });
 
-// Handle when mouse leaves the star rating
-starRating.addEventListener('mouseleave', function() {
-  // Reset to 0 stars
-  starFilled.style.width = "0%";
-  ratingValue.textContent = "Rating: 0 / 5";
-});
-
-starRating.addEventListener('click', function() {
-  const currentWidth = starFilled.style.width;
-  const currentPercentage = parseFloat(currentWidth);
-  const rating = (currentPercentage / 100) * 5;
-  alert(`You rated: ${rating} stars!`);
-
-});
+  // Handle when user clicks to set a rating
+  starRating.addEventListener('click', function(e) {
+    // Calculate relative position and rating just like in mousemove
+    const rect = starRating.getBoundingClientRect();
+    const position = e.clientX - rect.left;
+    const percentage = (position / rect.width) * 100;
+    let ratingScale = (percentage / 100) * (starCount * 2);
+    ratingScale = Math.round(ratingScale);
+    const rating = ratingScale / 2;
+    const exactPercentage = (ratingScale / (starCount * 2)) * 100;
+    
+    // Set the selected rating
+    selectedRating = rating;
+    ratingSelected = true;
+    
+    // Update UI
+    starFilled.style.width = exactPercentage + "%";
+    
+    console.log(selectedRating)    
+  });
+  
+  // Add a mouseenter event to allow re-rating
+  starRating.addEventListener('mouseenter', function() {
+    // Allow the user to rate again by setting ratingSelected to false when hovering
+    ratingSelected = false;
+  });
 }
-
 
 
 renderReviews()

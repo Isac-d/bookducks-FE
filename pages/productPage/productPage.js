@@ -1,10 +1,16 @@
 import { calculateRating } from "../../utlils/calculateAvgRating.js";
 import { fetchData } from "../../utlils/fetchData.js";
 import { openPopup, closePopup } from "../../utlils/openPopup.js";
+import { postReview } from "../../utlils/postReview.js";
+import { getUserRating,fetchUser } from "../../utlils/getUserRating.js";
+import { editReview } from "../../utlils/editReview.js";
+
 
 const BASE_URL = "http://localhost:1337";
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('id');
+
+
 
 const renderBook = async()=> {
     const bookInfo = await fetchData(`${BASE_URL}/api/books/${bookId}?populate=*`)
@@ -30,7 +36,7 @@ const renderBook = async()=> {
 
 
     const starsDiv = document.querySelector('.product-star-container')
-
+    starsDiv.addEventListener('click', ()=> openPopup(bookInfo.bookName, bookSrc, bookInfo.documentId))
     const starEmpty = document.createElement("div");
     starEmpty.className = "star-empty";
 
@@ -51,8 +57,11 @@ const renderBook = async()=> {
     starsDiv.appendChild(starEmpty);
     starsDiv.appendChild(starFilled);
 
+    const userBookRating = await getUserRating(bookInfo.documentId)
     const avgRating = calculateRating(bookInfo.reviews);
-    const ratingPercentage = (avgRating / 5) * 100;
+
+    console.log(avgRating)
+    const ratingPercentage = (userBookRating / 5) * 100;
     starFilled.style.width = `${ratingPercentage}%`;
 
     const reviewCount = document.querySelector('.vote-count')
@@ -63,7 +72,12 @@ const renderBook = async()=> {
     const ratingNumber = document.querySelector('.logo-yellow.rating')
     ratingNumber.innerHTML = avgRating
     const reviewButton = document.querySelector('.review-btn')
+
     reviewButton.addEventListener('click', ()=> openPopup(bookInfo.bookName, bookSrc, bookInfo.documentId))
+
+    
+
+
 
 }
 
@@ -74,7 +88,11 @@ const renderReviews = async () => {
       );
     console.log(bookInfo)
     const reviewArr = bookInfo.reviews
+    const reviewPlaceholder = document.querySelector('.review-placeholer')
     const reviewsContainer = document.querySelector(".review-list");
+    if(reviewArr.length > 0) {
+      reviewPlaceholder.style.display = 'none'
+    }
   
     reviewArr.forEach((review) => {
       const reviewDiv = document.createElement("div");
@@ -84,13 +102,17 @@ const renderReviews = async () => {
       reviewBody.className = "review-body";
   
       const titleAuthor = document.createElement("div");
-      titleAuthor.className = "title-author";
+      const userIcon = document.createElement('i')
+      userIcon.className = 'fa-solid fa-circle-user'
+      titleAuthor.className = "title-user";
   
       const title = document.createElement("div");
       title.className = "title";
       title.textContent = review.user.username;
   
+      titleAuthor.appendChild(userIcon);
       titleAuthor.appendChild(title);
+
 
       reviewBody.appendChild(titleAuthor);
   
@@ -196,7 +218,6 @@ if(starRating) {
       starFilled.style.width = "0%";
     } else {
       starFilled.style.width = `${(selectedRating / 5) * 100}%`;
-      ratingValue.textContent = `Rating: ${selectedRating} / 5`;
     }
   });
 
@@ -218,7 +239,6 @@ if(starRating) {
     // Update UI
     starFilled.style.width = exactPercentage + "%";
     
-    console.log(selectedRating)    
   });
   
   // Add a mouseenter event to allow re-rating
@@ -226,6 +246,53 @@ if(starRating) {
     // Allow the user to rate again by setting ratingSelected to false when hovering
     ratingSelected = false;
   });
+}
+
+export const handleAddReview = async()=> {
+  const reviewText = document.querySelector('.review-textarea').value
+  const bookInfo = await fetchData(
+    `${BASE_URL}/api/books/${bookId}?populate[reviews][populate][0]=user&populate[reviews][populate][1]=book
+`
+  );
+  const userId = localStorage.getItem("userId")
+  const rating = selectedRating * 2
+  if(selectedRating === 0){
+    alert('Please rate book atleast 0.5 Stars')
+    return
+  }
+
+  const reviewData ={
+    data: {
+      user: userId,
+      reviewText,
+      rating,
+      book: bookInfo.documentId
+    }
+  }
+  await postReview(reviewData)
+  window.location.reload()
+}
+
+export const handleEditReview = async(reviewId, bookId)=> {
+  const userId = localStorage.getItem("userId")
+
+  const reviewText = document.querySelector('.review-textarea').value
+  const rating = selectedRating * 2
+  if(selectedRating === 0){
+    alert('Please rate book atleast 0.5 Stars')
+    return
+  }
+  const reviewData = {
+    data: {
+      user: userId,
+      reviewText,
+      rating,
+      book: bookId
+    }
+  }
+await editReview(reviewId, reviewData)
+window.location.reload()
+
 }
 
 

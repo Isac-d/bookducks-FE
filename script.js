@@ -258,6 +258,7 @@ const renderAllBooks = async () => {
 const renderRecentReviews = async () => {
   const recentReviews = await fetchReviews(BASE_URL);
   const reviewsContainer = document.querySelector(".reviews-container");
+  console.log(recentReviews)
 
   recentReviews.forEach((review) => {
     const reviewDiv = document.createElement("div");
@@ -345,7 +346,11 @@ const logOutButton = document.querySelector('.log-Out')
 
 
 
-logOutButton.addEventListener('click', ()=>localStorage.removeItem('token'))
+logOutButton.addEventListener('click', ()=>{
+  localStorage.removeItem('token');
+  localStorage.removeItem('userId')
+}
+)
 renderRecentReviews();
 renderAllBooks();
 renderPopularBooks();

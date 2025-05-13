@@ -1,6 +1,7 @@
 import { handleShowPassword } from "../../utlils/showPassword.js";
 
 const eyeButtons = document.querySelectorAll(".toggle-password");
+const BASE_URL = "http://localhost:1337";
 
 eyeButtons.forEach((button) =>
   button.addEventListener("click", handleShowPassword)
@@ -8,7 +9,7 @@ eyeButtons.forEach((button) =>
 
 const loginUser = async (userData) => {
   try {
-    const response = await fetch("http://localhost:1337/api/auth/local", {
+    const response = await fetch(`${BASE_URL}/api/auth/local`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,10 @@ const loginUser = async (userData) => {
     }
 
     if (data.jwt) {
+      localStorage.setItem("userId", data.user.documentId);
       localStorage.setItem("token", data.jwt);
+
+
       console.log("User logged in:", data);
       return data;
     }

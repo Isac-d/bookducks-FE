@@ -1,5 +1,6 @@
 import { handleShowPassword } from "../../utlils/showPassword.js";
 
+const BASE_URL = "http://localhost:1337";
 
 const registerButton = document.querySelector(".login-button.register");
 
@@ -12,7 +13,7 @@ eyeButtons.forEach((button) =>
 const registerUser = async (userData) => {
   try {
     const response = await fetch(
-      "http://localhost:1337/api/auth/local/register",
+      `${BASE_URL}/api/auth/local/register`,
       {
         method: "POST",
         headers: {

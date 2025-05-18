@@ -4,13 +4,20 @@ import { openPopup, closePopup } from "../../utlils/openPopup.js";
 import { postReview } from "../../utlils/postReview.js";
 import { getUserRating,fetchUser } from "../../utlils/getUserRating.js";
 import { editReview } from "../../utlils/editReview.js";
+import { isUserSignedIn } from "../../utlils/isUserSignedIn.js";
+import { addToReadlist } from "../../utlils/addToReadlist.js";
 
 
 const BASE_URL = "http://localhost:1337";
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get('id');
 
-
+const reviewReadlist = document.querySelector('.review-readlist')
+const logInToReview = document.querySelector('.log-in-to-review')
+if(logInToReview){
+    logInToReview.style.display = isUserSignedIn() ? 'none' : 'flex'
+    reviewReadlist.style.display = isUserSignedIn() ? 'flex' : 'none' 
+}
 
 const renderBook = async()=> {
     const bookInfo = await fetchData(`${BASE_URL}/api/books/${bookId}?populate=*`)
@@ -86,6 +93,7 @@ const renderReviews = async () => {
         `${BASE_URL}/api/books/${bookId}?populate[reviews][populate][0]=user&populate[reviews][populate][1]=book
 `
       );
+    
     console.log(bookInfo)
     const reviewArr = bookInfo.reviews
     const reviewPlaceholder = document.querySelector('.review-placeholer')
@@ -94,6 +102,7 @@ const renderReviews = async () => {
       reviewPlaceholder.style.display = 'none'
     }
   
+    
     reviewArr.forEach((review) => {
       const reviewDiv = document.createElement("div");
       reviewDiv.className = "review";
@@ -254,8 +263,11 @@ export const handleAddReview = async()=> {
     `${BASE_URL}/api/books/${bookId}?populate[reviews][populate][0]=user&populate[reviews][populate][1]=book
 `
   );
-  const userId = localStorage.getItem("userId")
+  const userInfo = await fetchUser()
+  const userId = userInfo.documentId
+  console.log(userId)
   const rating = selectedRating * 2
+
   if(selectedRating === 0){
     alert('Please rate book atleast 0.5 Stars')
     return
@@ -272,13 +284,31 @@ export const handleAddReview = async()=> {
   await postReview(reviewData)
   window.location.reload()
 }
+const handleAddToReadlist = async() => {
+  const userInfo = await fetchUser()
+  const userId = userInfo.documentId
+  await addToReadlist(bookId, userId)
+}
+const readlistBtn = document.querySelector('.addtoreadlist')
+if(readlistBtn){
+  readlistBtn.addEventListener('click', handleAddToReadlist)
+}
 
-export const handleEditReview = async(reviewId, bookId)=> {
-  const userId = localStorage.getItem("userId")
+export const handleEditReview = async(reviewId, bookId, rating)=> {
+  const userInfo = await fetchUser()
+  const userId = userInfo.documentId
+  console.log(selectedRating)
+
 
   const reviewText = document.querySelector('.review-textarea').value
-  const rating = selectedRating * 2
-  if(selectedRating === 0){
+
+  let newRating = rating;
+
+  if (selectedRating > 0) {
+    newRating = selectedRating * 2; // Assuming you're storing as 0.5 increments
+  }
+
+  if(selectedRating === 0 && newRating === 0){
     alert('Please rate book atleast 0.5 Stars')
     return
   }
@@ -286,7 +316,7 @@ export const handleEditReview = async(reviewId, bookId)=> {
     data: {
       user: userId,
       reviewText,
-      rating,
+      rating: newRating,
       book: bookId
     }
   }

@@ -9,6 +9,7 @@ export const fetchUser = async () => {
   }
   const decoded = jwt_decode(token);
   const userId = decoded.id;
+  console.log('userid'+userId)
   try {
     const response = await fetch(
       `${BASE_URL}/api/users/${userId}?populate[reviews][populate][book]=*`,
@@ -38,7 +39,7 @@ export const getUserRating = async (bookId) => {
   const userInfo = await fetchUser();
   const userReviews = userInfo.reviews;
   console.log(userReviews);
-  if (userReviews.length === 0 || !userReviews) {
+  if (!userReviews) {
     return 0;
   }
   const specificBookReviews = userReviews.filter(

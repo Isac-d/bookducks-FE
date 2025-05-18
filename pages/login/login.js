@@ -1,7 +1,10 @@
 import { handleShowPassword } from "../../utlils/showPassword.js";
-
+import { isUserSignedIn } from "../../utlils/isUserSignedIn.js";
 const eyeButtons = document.querySelectorAll(".toggle-password");
 const BASE_URL = "http://localhost:1337";
+if(isUserSignedIn()){
+  window.location.href = '../../index.html'
+}
 
 eyeButtons.forEach((button) =>
   button.addEventListener("click", handleShowPassword)
@@ -27,7 +30,6 @@ const loginUser = async (userData) => {
     }
 
     if (data.jwt) {
-      localStorage.setItem("userId", data.user.documentId);
       localStorage.setItem("token", data.jwt);
 
 

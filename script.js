@@ -351,6 +351,7 @@ logOutButton.addEventListener('click', ()=>{
   localStorage.removeItem('userId')
 }
 )
+
 renderRecentReviews();
 renderAllBooks();
 renderPopularBooks();

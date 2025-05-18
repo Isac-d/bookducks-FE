@@ -2,25 +2,31 @@ import { isUserSignedIn } from "./isUserSignedIn.js"
 const renderIfSignedIn = () => {
   
     const buttonContainers = document.querySelectorAll('.button-container')
-    const reviewReadlist = document.querySelector('.review-readlist')
     const logOutButton = document.querySelector('.log-Out')
     const logInbutton = document.querySelector('.log-in')
-    const logInToReview = document.querySelector('.log-in-to-review')
+    const logInButtonHome = document.querySelector('.log-in-button')
+    const ctaLink = document.querySelector('.log-in-link')
+    const mypagesLink = document.querySelector('.my-pages')
+
+
     
-    logOutButton.addEventListener('click', window.refresh)
+    logOutButton.addEventListener('click', ()=>window.location.reload())
     
-  
+    
     
     const signedIn = isUserSignedIn();
     console.log(buttonContainers)
     
     logInbutton.style.display = signedIn ? 'none' : 'flex'
     logOutButton.style.display = signedIn ? 'flex' : 'none'
-
-    if(logInToReview){
-        logInToReview.style.display = signedIn ? 'none' : 'flex'
-        reviewReadlist.style.display = signedIn ? 'flex' : 'none' 
+    mypagesLink.style.display = signedIn ? 'block' : 'none'
+    if(logInButtonHome){
+      logInButtonHome.innerHTML = signedIn ? 'MY PAGES' : 'LOG IN'
+      ctaLink.href = !signedIn ? 'pages/login/login.html' : 'pages/mypages/mypages.html'
     }
+    
+    
+ 
   }
 
   document.addEventListener('DOMContentLoaded', () => {

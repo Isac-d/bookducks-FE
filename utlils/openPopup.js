@@ -8,6 +8,9 @@ import {
 export const findUserReview = async (bookId) => {
   const userInfo = await fetchUser();
   const userReviews = userInfo.reviews;
+  if(!userReviews){
+    return
+  }
 
   const specificBookReview = userReviews.filter(
     (review) => review.book.documentId === bookId
@@ -39,7 +42,7 @@ export const openPopup = async (title, image, bookId) => {
     addReviewButton.innerHTML = "EDIT REVIEW";
     document
       .querySelector(".submit-review")
-      .addEventListener("click",()=> handleEditReview(hasReview.documentId, hasReview.book.documentId));
+      .addEventListener("click",()=> handleEditReview(hasReview.documentId, hasReview.book.documentId, hasReview.rating));
   } else {
     addReviewButton.innerHTML = "ADD REVIEW";
     document

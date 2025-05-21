@@ -2,4 +2,16 @@
     padding-top: 200px;
     color: white;
     font-family: "Playfair Display SC", serif;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 70px;
+
+}
+
+.readlist-ratings-container {
+    display: flex;
+    gap: 50px;
 }

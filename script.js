@@ -1,6 +1,5 @@
 import { calculateRating } from "../frontend/utlils/calculateAvgRating.js";
 import { isUserSignedIn } from "./utlils/isUserSignedIn.js";
-import { openPopup } from "./utlils/openPopup.js";
 const BASE_URL = "http://localhost:1337";
 const fetchBooks = async (url) => {
   try {

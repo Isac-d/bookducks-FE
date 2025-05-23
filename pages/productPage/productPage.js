@@ -25,7 +25,8 @@ if (logInToReview) {
 const renderBook = async () => {
   const addReadlistBtn = document.querySelector(".addtoreadlist p");
   const userReadlist = await fetchUserReadlist();
-  let userReadlistIds = userReadlist.map((book) => book.documentId);
+  
+  let userReadlistIds = userReadlist?.map((book) => book.documentId);
 
   const bookInfo = await fetchData(
     `${BASE_URL}/api/books/${bookId}?populate=*`
@@ -50,7 +51,7 @@ const renderBook = async () => {
   bookImg.src = bookSrc;
   bookImg.alt = "book cover";
 
-  addReadlistBtn.innerHTML = userReadlistIds.includes(bookInfo.documentId)
+  addReadlistBtn.innerHTML = userReadlistIds?.includes(bookInfo.documentId)
     ? "Remove from readlist"
     : "Add to readlist";
 
@@ -78,10 +79,13 @@ const renderBook = async () => {
   starsDiv.appendChild(starEmpty);
   starsDiv.appendChild(starFilled);
 
-  const userBookRating = await getUserRating(bookInfo.documentId);
+  let userBookRating = await getUserRating(bookInfo.documentId);
+  
+  if(!userBookRating){
+    userBookRating = 0
+  }
   const avgRating = calculateRating(bookInfo.reviews);
 
-  console.log(avgRating);
   const ratingPercentage = (userBookRating / 5) * 100;
   starFilled.style.width = `${ratingPercentage}%`;
 
@@ -338,6 +342,8 @@ export const handleEditReview = async (reviewId, bookId, rating) => {
   await editReview(reviewId, reviewData);
   window.location.reload();
 };
+
+
 
 renderReviews();
 renderBook();

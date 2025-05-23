@@ -12,7 +12,8 @@ export const fetchUser = async () => {
   console.log('userid'+userId)
   try {
     const response = await fetch(
-      `${BASE_URL}/api/users/${userId}?populate[reviews][populate][book]=*`,
+      `${BASE_URL}/api/users/${userId}?populate[reviews][populate][book][populate]=bookCover`
+,
       {
         method: "GET",
         headers: {

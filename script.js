@@ -342,9 +342,6 @@ const renderRecentReviews = async () => {
 const logOutButton = document.querySelector('.log-Out')
 
 
-
-
-
 logOutButton.addEventListener('click', ()=>{
   localStorage.removeItem('token');
   localStorage.removeItem('userId')

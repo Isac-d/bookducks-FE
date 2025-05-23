@@ -4,12 +4,14 @@ const BASE_URL = "http://localhost:1337";
 
 export const fetchUserReadlist = async () => {
   const token = localStorage.getItem("token");
-
+  if(!token) {
+    return
+  }
   const decoded = jwt_decode(token);
   const userId = decoded.id;
   try {
     const response = await fetch(
-      `${BASE_URL}/api/users/${userId}?populate=*`,
+`${BASE_URL}/api/users/${userId}?populate[savedbooks][populate][bookCover]=*&populate[savedbooks][populate][reviews]=*`,
       {
         method: "GET",
         headers: {
@@ -40,6 +42,9 @@ export const addToReadlist = async (bookId) => {
   const addBtn = document.querySelector('.addtoreadlist p')
   addBtn.innerHTML = 'Remove from readlist'
   const token = localStorage.getItem("token");
+  if(!token) {
+    return
+  }
   const userInfo = await fetchUser();
   const userId = userInfo.id;
   
@@ -81,6 +86,9 @@ export const RemoveFromReadlist = async (bookId) => {
   const addBtn = document.querySelector('.addtoreadlist p')
   addBtn.innerHTML = 'Add to readlist'
   const token = localStorage.getItem("token");
+  if(!token) {
+    return
+  }
   const userInfo = await fetchUser();
   const userId = userInfo.id;
   

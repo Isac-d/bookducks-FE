@@ -265,7 +265,6 @@ span {
 }
 .review {
   display: flex;
-  width: 440px;
   padding: 20px;
   align-items: center;
   gap: 15px;
@@ -412,4 +411,46 @@ footer {
   height: 300px;
   margin-top: 150px;
   background: #2a2a2a;
+}
+
+.christmasThemeRed {
+  color: red;
+}
+
+.christmasThemeGreen {
+  color: green;
+}
+.christmasThemeYellow {
+  color: yellow;
+}
+.buttonChristmas {
+  background-color: green !important;
+}
+
+.borderChristmas {
+  border-bottom: 1px solid red !important;
+}
+
+.backgroundEaster {
+  background-color: #c7a491 !important;
+}
+
+.borderEaster {
+
+  border-bottom: 2px solid #afdbf2 !important;
+}
+
+.buttonEaster {
+  background: #fede43 !important;
+}
+
+.logoEaster {
+  color: #fede43 !important;
+}
+
+.navbarEaster {
+  background-color: #ae71d4;
+}
+.navbarEaster:hover {
+  background-color: #ae71d4;
 }

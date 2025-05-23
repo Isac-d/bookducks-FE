@@ -70,22 +70,18 @@ const renderPopularBooks = async () => {
     buttonContainer.style.display = isUserSignedIn() ? 'flex' : 'none'
 
     // Create "ADD TO READLIST" button
-    const addToReadlistBtn = document.createElement("button");
-    addToReadlistBtn.className = "add-to-readlist-popular";
-    addToReadlistBtn.textContent = "ADD TO READLIST ";
+   
 
     // Create book icon for the add to readlist button
     const bookIcon = document.createElement("i");
     bookIcon.className = "fa-solid fa-book";
     bookIcon.style.color = "white";
-    addToReadlistBtn.appendChild(bookIcon);
 
     // Create "REVIEW BOOK" button
     const reviewButton = document.createElement("button");
     reviewButton.className = "review-button-popular";
     reviewButton.textContent = "REVIEW BOOK";
     // Append buttons to button container
-    buttonContainer.appendChild(addToReadlistBtn);
     buttonContainer.appendChild(reviewButton);
 
     // Append button container to overlay
@@ -174,16 +170,12 @@ const renderAllBooks = async () => {
     buttonContainer.style.display = isUserSignedIn() ? 'flex' : 'none'
 
 
-    // Create "ADD TO READLIST" button
-    const addToReadlistBtn = document.createElement("button");
-    addToReadlistBtn.className = "add-to-readlist";
-    addToReadlistBtn.textContent = "ADD TO READLIST ";
+  
 
     // Create book icon for the add to readlist button
     const bookIcon = document.createElement("i");
     bookIcon.className = "fa-solid fa-book";
     bookIcon.style.color = "white";
-    addToReadlistBtn.appendChild(bookIcon);
 
     // Create "REVIEW BOOK" button
     const reviewButton = document.createElement("button");
@@ -191,7 +183,6 @@ const renderAllBooks = async () => {
     reviewButton.textContent = "REVIEW BOOK";
 
     // Append buttons to button container
-    buttonContainer.appendChild(addToReadlistBtn);
     buttonContainer.appendChild(reviewButton);
 
     // Append button container to overlay

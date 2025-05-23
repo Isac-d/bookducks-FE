@@ -152,7 +152,7 @@ const renderPopularBooks = async () => {
 const renderAllBooks = async () => {
   const allBooks = await fetchBooks(BASE_URL);
   const bookContainer = document.querySelector(".discover-books-container");
-
+  
   allBooks.forEach((book) => {
     const bookDiv = document.createElement("div");
     bookDiv.className = "book";
@@ -257,7 +257,6 @@ const renderAllBooks = async () => {
 const renderRecentReviews = async () => {
   const recentReviews = await fetchReviews(BASE_URL);
   const reviewsContainer = document.querySelector(".reviews-container");
-  console.log(recentReviews)
 
   recentReviews.forEach((review) => {
     const reviewDiv = document.createElement("div");

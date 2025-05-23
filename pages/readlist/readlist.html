@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="readlist.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="readlist.js" defer type="module"></script>
+    <script src="../../utlils/renderIfSignedIn.js" defer type="module"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Book<span class="logo-yellow">Ducks</span></div>
+      <div class="navlink-container">
+        <a href="../../index.html" class="navlink">Home</a>
+        <a href="../../index.html#books" class="navlink">Books</a>
+        <a href="../login/login.html" class="navlink log-in">Log In</a>
+        <a href="../mypages/mypages.html" class="navlink my-pages">My Pages</a>
+
+        <a href="" class="navlink log-Out">Log Out</a>
+      </div>
+    </nav>
+
+    <div class="my-books-wrapper">
+      <div class="content-nav-books">
+        <div class="content-nav-items">
+          <a href="" class="content-nav-item readlist">My Readlist</a>
+          <a href="../reviews/reviews.html" class="content-nav-item">My Reviews</a>
+        </div>
+        <div class="filter-dropdowns">
+          <select name="" id="" class="sort-alphabet">
+            <option value="" disabled selected>A-Z/Z-A</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
+          <p>Rating:</p>
+          <select name="" id="" class="sort-ratings">
+            <option value="" disabled selected>Rising/Decending</option>
+            <option value="rising">Rising</option>
+            <option value="Decending">Decending</option>
+          </select>
+        </div>
+      </div>
+      <div class="book-container"></div>
+    </div>
+
+    <footer></footer>
+  </body>
+</html>

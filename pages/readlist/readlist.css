@@ -1,0 +1,90 @@
+.my-books-wrapper {
+    min-height: 100vh;
+    color: white;
+    font-family: "Playfair Display SC", serif;
+    padding-top: 15%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.content-nav-books {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+.content-nav-items {
+    display: flex;
+    gap: 20px;
+}
+
+.content-nav-item {
+    cursor: pointer;
+    color: #a1a1a1;
+}
+
+.content-nav-item.readlist{
+    cursor: pointer;
+    color: #fff;
+    border-bottom: 1px solid #d4af37;
+}
+.content-nav-item.reviews{
+    cursor: pointer;
+    color: #fff;
+    border-bottom: 1px solid #d4af37;
+}
+
+select {
+    color: white;
+    font-family: "Lora", serif;
+    background: #1f1f1f;
+    border: none;
+    font-size: 20px;
+    border-bottom: 1px solid #d4af37;
+    padding: 5px;
+
+    
+
+}
+select:focus{
+    outline: none;
+}
+
+
+.filter-dropdowns{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.filter-dropdowns p {
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.book-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding-top: 50px;
+}
+.reviews-container {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.review-text {
+    background-color: #1f1f1f;
+    padding: 5px 10px;
+    border-radius: 9px;
+    margin-bottom: 10px
+}
+
+a {
+    text-decoration: none;
+}

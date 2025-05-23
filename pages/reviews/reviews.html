@@ -21,9 +21,9 @@
     />
     <title>Document</title>
     <link rel="stylesheet" href="../../style.css" />
-    <link rel="stylesheet" href="mypages.css" />
+    <link rel="stylesheet" href="../readlist/readlist.css" />
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-    <script src="mypages.js" defer type="module"></script>
+    <script src="reviews.js" defer type="module"></script>
     <script src="../../utlils/renderIfSignedIn.js" defer type="module"></script>
   </head>
   <body>
@@ -36,30 +36,34 @@
         <a href="../mypages/mypages.html" class="navlink my-pages">My Pages</a>
 
         <a href="" class="navlink log-Out">Log Out</a>
-        
       </div>
     </nav>
-    
-    <div class="my-pages-wrapper">
-      <h1 class="welcome-text">Welcome Username</h1>
-      <div class="readlist-ratings-container">
-        <div class="readlist-container">
-          <h2>Readlist</h2>
-          <div class="readlist-books">
-          </div>
-          <a href="" class="view-full-readlist">View Full Readlist</a>
+
+    <div class="my-books-wrapper">
+      <div class="content-nav-books">
+        <div class="content-nav-items">
+          <a href="../readlist/readlist.html" class="content-nav-item ">My Readlist</a>
+          <a href="" class="content-nav-item reviews">My Reviews</a>
         </div>
-        <div class="ratings-container">
-          <h2>My Reviews</h2>
-          <div class="rated-books"></div>
-          <a href="" class="view-full-ratings">View All My Reviews</a>
+        <div class="filter-dropdowns">
+          <select name="" id="" class="sort-alphabet">
+            <option value="" disabled selected>A-Z/Z-A</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
+          <p>Rating:</p>
+          <select name="" id="" class="sort-ratings">
+            <option value="" disabled selected>Rising/Decending</option>
+            <option value="rising">Rising</option>
+            <option value="Decending">Decending</option>
+          </select>
         </div>
+      </div>
+      <div class="review-container-wrapper">
+        <div class="reviews-container"></div>
       </div>
     </div>
 
-
-    <footer>
-      
-    </footer>
+    <footer></footer>
   </body>
 </html>

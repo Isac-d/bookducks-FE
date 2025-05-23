@@ -14,6 +14,12 @@ const renderRecentReadlist = async () => {
     const userReadlist = await fetchUserReadlist();
     const twoRecentReadlist = userReadlist.splice(-2).reverse();
 
+    if(twoRecentReadlist.length === 0) {
+        const emptyText = document.createElement('h1')
+        emptyText.classList.add('empty-text')
+        emptyText.innerHTML = 'Your readlist is empty'
+        readlistContainer.appendChild(emptyText)
+    }
   twoRecentReadlist.forEach((book) => {
     const bookDiv = document.createElement("div");
     bookDiv.className = "readlist-book";
@@ -95,11 +101,12 @@ const renderRecentReviews = async () => {
         ).values()
       );
     const twoRecentReviews = uniqueReviews.splice(-2).reverse();
-    console.log(twoRecentReviews)
     if(twoRecentReviews.length === 0) {
         const emptyText = document.createElement('h1')
         emptyText.classList.add('empty-text')
-        ratedContainer.innerHTML = 'ReadList empty'
+        emptyText.innerHTML = 'You have no reviews'
+        ratedContainer.appendChild(emptyText)
+
     }
 
     twoRecentReviews.forEach((book) => {
